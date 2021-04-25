@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditBillTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditBillLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{billController.selected.id}" title="#{bundle.EditBillTitle_id}" required="true" requiredMessage="#{bundle.EditBillRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditBillLabel_billDate}" for="billDate" />
+                    <h:inputText id="billDate" value="#{billController.selected.billDate}" title="#{bundle.EditBillTitle_billDate}" required="true" requiredMessage="#{bundle.EditBillRequiredMessage_billDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditBillLabel_dueDate}" for="dueDate" />
+                    <h:inputText id="dueDate" value="#{billController.selected.dueDate}" title="#{bundle.EditBillTitle_dueDate}" required="true" requiredMessage="#{bundle.EditBillRequiredMessage_dueDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditBillLabel_charges}" for="charges" />
+                    <h:inputText id="charges" value="#{billController.selected.charges}" title="#{bundle.EditBillTitle_charges}" required="true" requiredMessage="#{bundle.EditBillRequiredMessage_charges}"/>
+                    <h:outputLabel value="#{bundle.EditBillLabel_outstanding}" for="outstanding" />
+                    <h:inputText id="outstanding" value="#{billController.selected.outstanding}" title="#{bundle.EditBillTitle_outstanding}" required="true" requiredMessage="#{bundle.EditBillRequiredMessage_outstanding}"/>
+                    <h:outputLabel value="#{bundle.EditBillLabel_period}" for="period" />
+                    <h:inputText id="period" value="#{billController.selected.period}" title="#{bundle.EditBillTitle_period}" required="true" requiredMessage="#{bundle.EditBillRequiredMessage_period}"/>
+                    <h:outputLabel value="#{bundle.EditBillLabel_account}" for="account" />
+                    <h:selectOneMenu id="account" value="#{billController.selected.account}" title="#{bundle.EditBillTitle_account}" required="true" requiredMessage="#{bundle.EditBillRequiredMessage_account}">
+                        <f:selectItems value="#{accountController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{billController.update}" value="#{bundle.EditBillSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditBillViewLink}"/>
+                <br />
+                <h:commandLink action="#{billController.prepareList}" value="#{bundle.EditBillShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditBillIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

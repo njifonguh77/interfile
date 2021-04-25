@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditContactDetailsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditContactDetailsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{contactDetailsController.selected.id}" title="#{bundle.EditContactDetailsTitle_id}" required="true" requiredMessage="#{bundle.EditContactDetailsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditContactDetailsLabel_home}" for="home" />
+                    <h:inputText id="home" value="#{contactDetailsController.selected.home}" title="#{bundle.EditContactDetailsTitle_home}" />
+                    <h:outputLabel value="#{bundle.EditContactDetailsLabel_mobile}" for="mobile" />
+                    <h:inputText id="mobile" value="#{contactDetailsController.selected.mobile}" title="#{bundle.EditContactDetailsTitle_mobile}" required="true" requiredMessage="#{bundle.EditContactDetailsRequiredMessage_mobile}"/>
+                    <h:outputLabel value="#{bundle.EditContactDetailsLabel_work}" for="work" />
+                    <h:inputText id="work" value="#{contactDetailsController.selected.work}" title="#{bundle.EditContactDetailsTitle_work}" />
+                </h:panelGrid>
+                <h:commandLink action="#{contactDetailsController.update}" value="#{bundle.EditContactDetailsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditContactDetailsViewLink}"/>
+                <br />
+                <h:commandLink action="#{contactDetailsController.prepareList}" value="#{bundle.EditContactDetailsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditContactDetailsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

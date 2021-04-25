@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAccountHolderDetailsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAccountHolderDetailsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{accountHolderDetailsController.selected.id}" title="#{bundle.CreateAccountHolderDetailsTitle_id}" required="true" requiredMessage="#{bundle.CreateAccountHolderDetailsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateAccountHolderDetailsLabel_account}" for="account" />
+                    <h:selectOneMenu id="account" value="#{accountHolderDetailsController.selected.account}" title="#{bundle.CreateAccountHolderDetailsTitle_account}" required="true" requiredMessage="#{bundle.CreateAccountHolderDetailsRequiredMessage_account}">
+                        <f:selectItems value="#{accountController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAccountHolderDetailsLabel_addressDetails}" for="addressDetails" />
+                    <h:selectOneMenu id="addressDetails" value="#{accountHolderDetailsController.selected.addressDetails}" title="#{bundle.CreateAccountHolderDetailsTitle_addressDetails}" required="true" requiredMessage="#{bundle.CreateAccountHolderDetailsRequiredMessage_addressDetails}">
+                        <f:selectItems value="#{addressDetailsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAccountHolderDetailsLabel_contactDetials}" for="contactDetials" />
+                    <h:selectOneMenu id="contactDetials" value="#{accountHolderDetailsController.selected.contactDetials}" title="#{bundle.CreateAccountHolderDetailsTitle_contactDetials}" required="true" requiredMessage="#{bundle.CreateAccountHolderDetailsRequiredMessage_contactDetials}">
+                        <f:selectItems value="#{contactDetailsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{accountHolderDetailsController.create}" value="#{bundle.CreateAccountHolderDetailsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{accountHolderDetailsController.prepareList}" value="#{bundle.CreateAccountHolderDetailsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAccountHolderDetailsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBillTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBillLabel_id}"/>
+                    <h:outputText value="#{billController.selected.id}" title="#{bundle.ViewBillTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewBillLabel_billDate}"/>
+                    <h:outputText value="#{billController.selected.billDate}" title="#{bundle.ViewBillTitle_billDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewBillLabel_dueDate}"/>
+                    <h:outputText value="#{billController.selected.dueDate}" title="#{bundle.ViewBillTitle_dueDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewBillLabel_charges}"/>
+                    <h:outputText value="#{billController.selected.charges}" title="#{bundle.ViewBillTitle_charges}"/>
+                    <h:outputText value="#{bundle.ViewBillLabel_outstanding}"/>
+                    <h:outputText value="#{billController.selected.outstanding}" title="#{bundle.ViewBillTitle_outstanding}"/>
+                    <h:outputText value="#{bundle.ViewBillLabel_period}"/>
+                    <h:outputText value="#{billController.selected.period}" title="#{bundle.ViewBillTitle_period}"/>
+                    <h:outputText value="#{bundle.ViewBillLabel_account}"/>
+                    <h:outputText value="#{billController.selected.account}" title="#{bundle.ViewBillTitle_account}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{billController.destroyAndView}" value="#{bundle.ViewBillDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewBillEditLink}"/>
+                <br />
+                <h:commandLink action="#{billController.prepareCreate}" value="#{bundle.ViewBillCreateLink}" />
+                <br />
+                <h:commandLink action="#{billController.prepareList}" value="#{bundle.ViewBillShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewBillIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
